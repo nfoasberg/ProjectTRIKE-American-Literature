@@ -1,6 +1,26 @@
-## Describe the Dataset
+## About This Project
 
 The dataset is a collection of records from the _MLA International Bibliography_ for the journal _American Literature_ for three different years, 2010, 1980, and 1950.  
+
+### Research Questions
+
+Although it is important to select your data with some knowledge of the questions you want to answer with it, research questions are still likely to shift over time, based on what you see in the data. When this happens, it's important to revisit the initial questions and think about whether the new questions can be answered using the same data.
+
+In this case, I began gathering data with these questions in mind:
+
+    1. How had the canon of American literature changed in the twentieth century? Are scholars writing about different authors now than they did previously? Is more attention being paid to women authors and authors of color? 
+    2. Criticism changed drastically over the course of the twentieth century, with the emergence of many different schools of criticism. Are these differences visible from the metadata and subject indexing of the journal?
+    3. How has the indexing in MLA shifted over time?  I expect to see _more_ subject terms per citation, but will I see different ones?
+
+Note that several of these questions are bigger than the data that I've chosen to answer them. The question of canon in American literature will not be answered by one journal!  It also doesn't represent the breadth of the Bibliography. 
+
+However, looking at one journal has its virtues:
+
+    * Issues of a journal are likely to be similar in both subject matter and length.  I don't have to worry about comparing a journal that publishes 20 articles in an issue to one that publishes 4, or comparing a journal that's published quarterly to one that's only published anually.
+    * Changes in this journal reflect what's happening between that journal and its readership. Suppose, for instance, that the number of different journals published has risen sharply at some point.  Many of the changes I'd see in the data would be because more journals are being published, and each of those journals would likely have a slightly different scope, readership, or editorial policies.  Note that I don't totally avoid this problem by sticking with one journal, as authors make choices about where to publish their work which are likely to be influenced by the other options available to them.
+    * The amount of data I will collect is much more manageable.
+
+So this makes sense as a place to start. In no case will a single project answer all of its own questions definitively! We work in the hope that others will find these questions interesting, and work on related projects that may also contribute to answer our questions.
 
 ### MLA International Bibliography_
 _MLAIB_ is an index maintained by the Modern Language Association, a scholarly association for the study of language and literature. The index has strong coverage of the scholarly literature in these areas, including journals, books, and disserations. Coverage goes back to the 1920s.  Each entry includes specific metadata. Basic bibliographic information, including title, author, source (that is, place of publication), and ISSN or ISBN, is part of each record, along with "document information," including language, publication type, and accession number (a special number assigned to each record for ease of identifying it within the system). 
@@ -63,7 +83,7 @@ As its title suggests, _American Literature_ is "a journal of literary history, 
 Almost any scholarly journal could be appropriate for an analysis like the one I'll do in this project. I didn't need to choose _American Literature_ in particular.  However, it's a good choice because:
 
     * It has a long publication history.  In this project, I'll be comparing the subject terms that have been applied to this journal at different time periods. This sort of analysis makes much less sense for younger journals.
-    * _American Literature_ publishes a relatively high number of articles per issue, thus providing more data for my analysis.  
+    *  _American Literature_ publishes a relatively high number of articles per issue, thus providing more data for my analysis.  
     *  It is a well-known and well-respected journal with a large readership, so it is likely more reflective of concerns in the broader field of American Literature than a more specialized journal.
     *  It is indexed in MLA.
 
@@ -83,26 +103,6 @@ Although each file covers a year's worth of articles published in this journal, 
 I plan to extract the subject terms for further examination.  The rest of the metadata will probably not be used in this project.
 
 ## Data Collection
-
-### Research Questions
-
-Although it is important to select your data with some knowledge of the questions you want to answer with it, research questions are still likely to shift over time, based on what you see in the data. When this happens, it's important to revisit the initial questions and think about whether the new questions can be answered using the same data.
-
-In this case, I began gathering data with these questions in mind:
-
-    1. How had the canon of American literature changed in the twentieth century? Are scholars writing about different authors now than they did previously? Is more attention being paid to women authors and authors of color? 
-    2. Criticism changed drastically over the course of the twentieth century, with the emergence of many different schools of criticism. Are these differences visible from the metadata and subject indexing of the journal?
-    3. How has the indexing in MLA shifted over time?  I expect to see _more_ subject terms per citation, but will I see different ones?
-
-Note that several of these questions are bigger than the data that I've chosen to answer them. The question of canon in American literature will not be answered by one journal!  So is the breadth of the Bibliography. 
-
-However, looking at one journal has its virtues:
-
-    * Issues of a journal are likely to be similar in both subject matter and length.  I don't have to worry about comparing a journal that publishes 20 articles in an issue to one that publishes 4, or comparing a journal that's published quarterly to one that's only published anually.
-    * Changes in this journal reflect what's happening between that journal and its readership. Suppose, for instance, that the number of different journals published has risen sharply at some point.  Many of the changes I'd see in the data would be because more journals are being published, and those journals would likely have a slightly different scope, readership, or editorial policies.  Note that I don't totally avoid this problem by sticking with one journal, as authors make choices about where to publish their work which are likely to be influenced by the other options available to them.
-    * The amount of data I will collect is much more manageable.
-
-So this makes sense as a place to start. In no case will a single project answer all of its own questions definitively! We work in the hope that others will find these questions interesting, and work on related projects that may also contribute to answer our questions.
 
 ### Three Years
 
