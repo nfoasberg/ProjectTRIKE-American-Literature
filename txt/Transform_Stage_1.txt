@@ -1,0 +1,111 @@
+Working with MLA Data -- First Steps
+
+Previously, on Project TRIKE: American Literature...
+
+I identified the data I wanted to use for this project.  I knew I wanted to look at records from the Modern Language Association International Bibliography, but also needed to limit the amount of data I worked with, so I chose one journal (American Literature) and three evenly-spaced years (1950, 1980, and 2010). I used the EBSCO version of the MLA database to download these records in two separate file formats.
+
+Where We Start:
+
+For each year, I have two different documents:
+
+* A CSV file, downloaded from the EBSCO interface for MLAIB using the "export" function in the folder and the "Download as CSV" option there.
+* A plain text file. This data was obtained via the "Save As File" option in the folder and copied into a file.
+
+Each CSV file provides a compilation of all the records for a year, making it easy to see the data included in each record and how the fields relate to each other. However, while the CSV does an admirable job of splitting out the bibliographic information, such as title, author, and issue, it lumps all the different types of subject heading into a single "subjects" field.
+
+The text file is much less easy to work with as data, but it does make these distinctions. As we saw on the prior page, Subject Author, Subject Work, Period, and Classification are separate from the subject terms that describe the content of the article. This information exists in the database as it's provided to the database vendors, and can be searched as such, but it isn't reflected in the downloadable CSV file.  
+
+It's useful to remember that the data that exists in a resource may be different from what end-users are allowed to access! While it's a little frustrating to spend time reconstructing a structure that already exists in the database, we do have the data and the tools to do it.
+
+Technical Stuff: Extracting Subject Terms
+
+Before I can analyze the subject terms, I need to put them into a more tractable format.  The CSV file isn't much help, because it doesn't make those distinctions.  However, I also don't want to spend the time to go through each record and pulling out the information manually, even for a small dataset.
+
+This is where a little bit of programming knowledge can come in handy. I used Python to extract the subject terms, and copied them into CSV files. 
+
+Getting the Subject Terms from the Text File
+
+Please see my Jupyter Notebook for a more complete explanation of the technical details of this process. 
+
+mla_metadata_queries.ipynb
+
+In short, my Python script turned the text file into a list, like this:
+
+infile = open('1950_readable.txt')
+metadata = infile.read()
+metadata_list = metadata.split("\n")
+
+Then, it searched each line in the list for the words that signaled the types of metadata that I wanted and used the indexing function of Python to print out the terms I wanted.  For example, the code:
+
+for line in metadata_list:
+    if "Period:" in line:
+        print(line[8:])
+
+printed out a list of century ranges, which I then copied and pasted into a CSV file. 
+
+In some cases, a line might contain more than one term, separated by semicolons. In theory, it's possible to split these lines at the semicolon, but the result was in Python's list format, which looks a little like this:
+
+['poetry', ' and prose']
+['prose']
+['novel']
+
+...so I decided it was less trouble to split them manually.  
+
+[something about the subject terms once this is really settled]
+
+After iterating, copying, and pasting, I ended up with these three CSV files:
+
+1950_subjects.csv
+1980_subjects.csv
+2010_subjects.csv
+
+However, for the purposes of actually working with the data, I split it out into several different files, as follows:
+
+subject_dates_compiled.csv
+subject_authors_compiled.csv
+subject_works_compiled.csv
+work_classification_compiled.csv
+subject_terms_compiled.csv
+
+"Subject" means that the characteristics described belong to the work under analysis, not the article analyzing them. Let's walk through each of these:
+"Subject date" is my rephrasing of the field "Period", which specifies the century in which the work was published (for instance, 1800-1899).
+"Subject authors" are the authors of works being analyzed (for instance, Phillis Wheatley).
+"Subject works" are the works of literature being analyzed (for instance, _Leaves of Grass_).
+The "work classification" tells us which type of work is being analyzed -- drama, poetry, novel, etc.  
+Finally, the "subject terms," while also a phrase applied to the broader list, is used here to refer to the list of descriptive subject terms that bring out the main concerns of the critic in analyzing the work. These can be very varied, but for example, words like "poetic form" or "electricity" or "innocence" might be used. 
+
+One More Pass
+
+I'd succeeded in getting my data into a workable format! That's great, but I still need to check it against my original dataset, since the loss of context can make it harder to detect inconsistencies.  There were a few problems caused by duplicate entries for a field within the same record.  If there is no data in a field, MLA silently omits it, which means that the duplicate entries could not be found simply by comparing the number of records to the amount of data.
+
+This process was not glamorous or sophisticated! I searched through each of my original text files for signal words like "Period:" or "Primary Subject Author" and noted which record each one belonged to; in cases where there was more than one idential piece of data listed for the same record, I went to my CSV files and deleted the duplicate. 
+
+In a larger dataset, I might not be able to detect these duplicates as easily, likely resulting in a dataset with more errors.
+
+(Some of the) Errors, Gaps and Decisions
+
+The dataset we're working with has changed a lot since we began, so I want to take a moment here to point out how errors can creep in. 
+
+First, errors may have been part of the data before I downloaded it.  Prior to my creation of this dataset, MLA created and published the records that comprise it; they subsequently sent it to EBSCO, where it was reformatted to fit the schema that EBSCO applies to its databases.  If errors were introduced at any point in this process, they would persist into my dataset.  For instance, an observation about the work could be put into the wrong field.  In the subject date list, you may notice that one of the periods listed in the 2010 data is:
+
+"role of Child, Lydia Maria (1802-1880); in editions (1865)"
+
+This definitely doesn't belong in "period" field, which has a specific format and should have read "1800-1899".  Judging by the phrasing ("role of"), these are both part of the "subject terms" field and should have been included there.  This affects the record in two ways: the subject data is missing from the subject field, and the date is missing from the period field. 
+
+As I work with the data, should I correct this in either field, neither, or both? 
+
+This error stands out because of the uniform formatting of this particular field. Errors in other fields may be more difficult for me to catch, especially in a larger dataset. If I correct all the errors that I notice, I may be giving myself more data to work with, but there is also a risk I may create inconsistencies -- and those inconsistencies will be mine, not MLA's.
+
+Of course, in the activities I've outlined so far, there is already plenty of scope for me to introduce my own errors into the data.  I've handled it a lot; the more I handle the data, the more chance I'll get something wrong. I've describe my process for extracting the subject terms using regular expressions; it would be very easy to miss some data in the case of a long string.  I've combed back through to correct each of those cases that I could find -- but I could certainly miss something. I've also done a lot of copying and pasting, which creates the potential that I could make an error, missing part of the list. So as I work with the data, I could add errors both through my use of scripts and through my manual processing of the data. Although a more streamlined process may reduce (or increase!) some of these risks, it's difficult to avoid them entirely.  
+
+Of course, the relationship between the way the data is structured and the work that I'm doing with it could also cause some problems.  For instance, I am looking at this data longitudinally, so I need to work with older records as well as more recent ones. The 1980 and 2010 records include a field called "Group," which identifies various characteristics of the author or authors under consideration in the article: for instance, "African American novelists," "Native American writers," "Puritan poets," etc. None of the records in the 1950 data include this field, and it's rarely used in the 1980 data but common in 2010. This is data that would have been useful to me, but because it isn't applied consistently, I didn't capture it. On the other hand, some records have multiple lists of subject terms with many terms in common; this seems to happen when a work is an adaptation. I would like to do more research into the reasons that this exists, but I suspect that there are multiple sets of subject terms getting applied to the same work, one for itself and one for the work as an adaptation.  In any case, I felt that this gave undue weight to these subject terms, so I removed any subject terms that were repeated within the same heading. 
+
+The most difficult decision of this sort that I had to make was for a record with two sets of subject headings that looked like this:
+
+Subject Terms:
+imagery; of happiness; despair; treatment of Xochiquetzal; sources in Mexican legend
+
+Subject Terms:
+treatment of Xochiquetzal; relationship to imagery; of happiness; despair; in Porter, Katherine Anne (1890-1980); Hacienda (1934); 'The Children of Xochitl'
+
+I kept the unique terms and deleted the duplicates, but hesitated over "imagery" and "relationship to imagery." Are these the same, or different? It's very clear that they're occupying the same place in these subject headings, but they aren't exactly the same. Keeping both would make it look like there's more discussion of imagery in this dataset than there actually is, but removing one will change how I read the headings.  In any case, if I do remove one, which one should it be? Ultimately, I decided to keep "relationship to imagery," because I'm interested in how the headings with modifiers of this sort work, and to discard "imagery" to avoid counting it twice, but I could certainly have made a different decision. 
