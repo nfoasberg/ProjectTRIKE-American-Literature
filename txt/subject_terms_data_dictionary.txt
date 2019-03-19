@@ -1,0 +1,31 @@
+Subject Terms Data Dictionary
+
+adaptations, performances, and translations -- any terms indicating an article that focuses on a transformed version of the work, such as an adaptation or a translation
+
+article genre -- terms that decribes the type of article presented, such as a bibliography or a biography
+
+authorship or publishing -- terms that describe the publication history of a work, the literary career of an author, or the state of the publishing industry at the time a work was published
+
+character -- terms that specifically refer to fictional characters
+
+concrete object -- terms referring to items or phenomena that physically exist in the world
+
+genre -- terms that place a work within a group of other, similar literary works
+
+geographical location -- terms referring to specific places
+
+group of people -- terms that refer to people as part of a group, rather than individuals
+
+historical event or entity -- terms that refer to specific historical events or organizations
+
+sources -- terms pointing out the work's relationship to another work, set of works, or author
+
+person -- terms that refer to a literary or historical person without making an explicit claim about their relationship to the subject work
+
+philosophical concepts and ideologies -- terms used to establish a relationship between the work and some broader idea, observation or ideological frame. This category is intentionally very wide-ranging but covers many of the concepts often referred to, vaguely, as "themes"
+
+religion -- terms that refer to specific religions or religious entities (not their practitioners)
+
+rhetorical technique -- terms that refer to formal characteristics of a literary work
+
+title of work -- terms that reference the title of a subject work or some other work, without making an explicit claim about its relation to another work
