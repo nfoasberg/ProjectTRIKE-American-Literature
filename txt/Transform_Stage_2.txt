@@ -16,7 +16,7 @@ Our collection of subject dates is the easiest to work with. In the records, eac
 * The dates are comparable to each other in an obvious, straightfoward fashion.
 * It's easy to know what questions we want to ask.
 
-I'm making the data available here as a CSV file, but it's probably easiest to use some sort of spreadsheet software to tabulate the data and create simple visualizations. I used Microsoft Excel for this purpose, but you could do the same with GoogleSheets or a free and open source spreadsheet alternative (true?).  
+I'm making the data available here as a CSV file, but it's probably easiest to use some sort of spreadsheet software to tabulate the data and create simple visualizations. I used Microsoft Excel for this purpose, but you could do the same with GoogleSheets or a free and open source spreadsheet alternative.  
 
 The software I used has a function allowing me to count the number of occurences for a specific string in a set of cels, so I organized the cels by publication year of the article (1950, 1980, or 2010) and made a table for each subject period and one for the data overall.  
 
@@ -28,33 +28,52 @@ I used the visualization tools in my spreadsheet software to create some bar cha
 
 American Literature by Type of Work
 
-The "work classification" -- dividing works into fiction, poetry, etc is a little more complicated than the dates, but not as complicated as some of the other metadata we'll consider later. Once again, I made a table of the different types of works appearing in the metadata, checking for duplicates as descibed above: 
+The "work classification" -- dividing works into fiction, poetry, etc is a little more complicated than the dates, but not as complicated as some of the other metadata we'll consider later. 
+
+This existence of a "genre" field which is apparently close in meaning to the "work classification" field complicates this. Should I combine these two fields or not?  The values of this field are often similar, and in all cases but one, "genre" appears to replace "work classification." However, there is certainly a difference behind the scenes -- otherwise, this wouldn't be two different fields. This difference might be a hierarchical one -- that is, it might exist at a different level of specificity in the vocabulary of the index. It's risky to combine fields when I don't fully understand why they are separate, but I also want to get the most accurate understanding that I can of the subject matter of the journal. Ultimately, I did combine them. Thus, the "Type of Work" data doesn't perfectly mirror the records; it's an amalgamated category. I'm already creating my own fields. 
+
+Once again, I made a table of the different types of works appearing in the metadata, checking for duplicates as descibed above: 
 
 work_classification_table.csv
 
 Type of Work	Cited in 1950	Cited in 1980	Cited in 2010	Total
 autobiography	0	0	2	2
-criticism	1	1	0	2
-fiction	0	0	1	1
-manuscript note	2	2	0	4
-novel	6	6	4	16
+criticism	1	0	0	1
+drama	0	1	0	1
+fiction	0	0	2	2
+folk literature	0	1	0	1
+historical novel	0	0	1	1
+letters	0	1	0	1
+manuscript note	2	0	0	2
+no classification	17	2	1	20
+novel	6	14	6	26
+periodicals	2	0	0	2
 poetic cycle	0	0	1	1
-poetry	4	4	3	11
-prose	9	9	5	23
-short story	1	1	2	4
-source study	1	1	0	2
-translation	1	1	0	2
-Total	25	25	18	68
+poetry	4	8	5	17
+popular poetry	0	0	1	1
+prose	9	5	6	20
+short story	1	6	2	9
+song	0	0	1	1
+source study	1	0	0	1
+translation	1	0	0	1
+war fiction	0	0	1	1
+Total	44	38	29	111
 
-Looking at this table, a few problems become obvious. First, this is a much larger number of possible categories than the last dataset! There are eleven categories in this list; not a huge number, but also not a number that lends itself to the visualizations of the type we've tried above. Additionally, some of the distinctions made seem a little arbitrary -- for instance, why are some works classified as "novels" or "short stories," while others are classified simply as "prose"?
+Looking at this table, a few problems become obvious. First, this is a much larger number of possible categories than the last dataset! Patterns are difficult to discern from this table; even  a bar chart like the one we made above wouldn't be particularly helpful.  Additionally, some of the distinctions made seem a little arbitrary -- for instance, why are some works classified as "novels" or "short stories," while others are classified simply as "prose"?
 
-A quick glance shows us that most of these categories include fewer than five items.  Items in three categories, "novel," "poetry," and "prose," make up most of the list. One way of dealing with this kind of data is to look only at the items that dominate the list, so for instance, I could visualize just these three:
+[insert "Types of Work by Year Cited" from work_classification_visualization.xls]
 
-[insert "Just the top 3" graph from work_classification_visualization.xls]
+A quick glance shows us that most of these categories include fewer than five items.  Records without categories and items in three categories, "novel," "poetry," "prose," and "short stories," make up most of the list. One way of dealing with this kind of data is to look only at the items that dominate the list, so for instance, I could visualize just these three:
 
-But this doesn't seem right to me. What if the categories I've discarded actually add up to something important? Are we underestimating the amount of criticism published about prose if we leave out short stories and autobiographies?  
+[insert "Most Prevalent Work Types" graph from work_classification_visualization.xls]
 
-My answer to this problem was to sort each type of work into a larger category. The typical "genres" that literary criticism often uses as starting points are poetry, prose, and drama, so that seemed like a good place to start. However, I also wanted to acknowledge the difference between novels and manuscript notes, works of criticism, and the like. Therefore, I introduced into my categories a distinction between creative prose works, like novels and short stories, and critical prose works, such as criticism. 
+But this doesn't seem right to me. Why are we giving so much attention to these different types of prose? What if the categories I've discarded actually add up to something important? Are we underestimating the amount of criticism published about prose if we leave out the autobiographies and other prose genres?  
+
+My answer to this problem was to sort each type of work into a larger category. The typical "genres" that literary criticism often uses as starting points are poetry, prose, and drama, so that seemed like a good place to start. However, I also wanted to acknowledge the difference between novels and manuscript notes, works of criticism, and the like. Therefore, I introduced into my categories a distinction between literary prose works, like novels and short stories, and critical prose works, such as criticism and manuscript notes. For less specific categories, I made some assumptions -- for instance, I assumed that "prose" referred to literary prose, and that the translation was a prose translation. These aren't necessarily true. In this case I could have gone back to my original downloaded records and painstakingly checked each one -- but then, what is the point of extracting the data in the first place? 
+
+Most of the categories were fairly easy to group, but "songs" was a difficult one. I grouped it with poetry, because surely it is a type of verse -- but that classification is far from an obvious one. 
+
+There is one more problem with this kind of grouping. When I initially compiled the dataset, I eliminated duplicate data from within the same record. However, by collapsing the categories into groups, it's possible that I could undo some of that work. For instance, if "manuscript notes" and "source study" both occurred in the same record, I am now counting it twice. That could be acceptable if I'm interested in 
 
 work_classification_grouped.csv
 

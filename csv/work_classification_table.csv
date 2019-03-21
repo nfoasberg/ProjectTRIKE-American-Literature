@@ -1,13 +1,22 @@
 Type of Work,Cited in 1950,Cited in 1980,Cited in 2010,Total
 autobiography,0,0,2,2
-criticism,1,1,0,2
-fiction,0,0,1,1
-manuscript note,2,2,0,4
-novel,6,6,4,16
+criticism,1,0,0,1
+drama,0,1,0,1
+fiction,0,0,2,2
+folk literature,0,1,0,1
+historical novel,0,0,1,1
+letters,0,1,0,1
+manuscript note,2,0,0,2
+no classification,17,2,1,20
+novel,6,14,6,26
+periodicals,2,0,0,2
 poetic cycle,0,0,1,1
-poetry,4,4,3,11
-prose,9,9,5,23
-short story,1,1,2,4
-source study,1,1,0,2
-translation,1,1,0,2
-,25,25,18,68
+poetry,4,8,5,17
+popular poetry,0,0,1,1
+prose,9,5,6,20
+short story,1,6,2,9
+song,0,0,1,1
+source study,1,0,0,1
+translation,1,0,0,1
+war fiction,0,0,1,1
+Total,44,38,29,111
