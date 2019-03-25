@@ -139,3 +139,6 @@ As noted above, there are some cases in which an article might not have data for
 ## Data Gathered!
 
 Of course, in the activities I've outlined so far, there is already plenty of scope for me to introduce my own errors and oversights into the data.  I've handled it a lot; the more I handle the data, the more likely it is that I'll get something wrong, either through an error in the code I'm using to extract the data or simply through missing something as I corrected errors. I've also done a lot of copying and pasting, which creates the potential that I could make an error, missing part of the list. Although a more streamlined process may reduce (or increase!) some of these risks, it's difficult to avoid them entirely.  
+
+[Second_Transformation](Transform_Stage_2.md)
+[Back](Base_Dataset.md)

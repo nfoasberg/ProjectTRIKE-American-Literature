@@ -13,4 +13,4 @@ My analysis is based on the EBSCO interface of MLA, accessed through the [Queens
 
 Enjoy! 
 
-Not yet, though. This isn't public yet. 
+[Abstract](abstract.md)

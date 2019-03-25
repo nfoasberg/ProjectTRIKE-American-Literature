@@ -167,3 +167,6 @@ Visualizing any set of data with this many categories is likely to be difficult.
 [chart from subject_terms_analysis.xml]
 
 *Subject terms, in many cases, are part of a hierarchical vocabulary with their own implied context. However, these are not always visible or legible to the enduser, in this case me.
+
+[Analysis](Analysis.md)
+[Back](Transform_Stage_1.md)

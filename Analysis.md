@@ -110,3 +110,5 @@ However, natural language processing would not work for the dataset that I gathe
 What I've suggested here is really a place to begin. One of the things I find interesting about the analysis I've done here is that it serves mainly to point out new questions.  This is a perfectly valid use for data, especially in the humanities -- it tells you where to look. 
 
 *Obviously, both of these are gross simplifications; please read further on each of these schools of critcism. 
+
+[Back](Transform_Stage_2.md)

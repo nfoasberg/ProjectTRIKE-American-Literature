@@ -9,3 +9,5 @@ In this set of transformations for this data, I will:
 * Demonstrate how to extract the subject terms from the records
 * Split these terms into separate datasets for analysis
 * Walk through some strategies and questions for each of the datasets
+
+[Introduction](introduction.md)
