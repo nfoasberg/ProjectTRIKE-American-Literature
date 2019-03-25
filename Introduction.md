@@ -65,7 +65,7 @@ As the record notes, the records of items in the Bibliography are copyrighted by
 
 ## _American Literature: A Journal of Literary History, Criticism, and Bibliography_
 
-As its title suggests, [_American Literature_] (https://www.dukeupress.edu/American-Literature/) is "a journal of literary history, criticism, and bibliography, covering the works of American authors, past and present."  It is published by Duke University Press and is indexed in many databases, including those that cover literature and history. The journal is published quarterly, with new issues appearing in March, June, September and December. _American Literature_ has been published since 1929.
+As its title suggests, _American Literature_ is "a journal of literary history, criticism, and bibliography, covering the works of American authors, past and present."  It is published by Duke University Press and is indexed in many databases, including those that cover literature and history. The journal is published quarterly, with new issues appearing in March, June, September and December. _American Literature_ has been published since 1929.
 
 Almost any scholarly journal could be appropriate for the kind of analysis this project will perform.  However, _American Literature_ is a good choice because:
 
@@ -86,5 +86,5 @@ These sample years are thirty years apart, allowing time for shifts in the disci
 
 Regardless of the specific years chosen, I wanted to avoid working with current data, because it is more likely to change in the future. 
 
-[Base_Dataset](Base_Dataset.md)
+[Base_Dataset](Base_Dataset.md) ||
 [Back](Abstract.md)

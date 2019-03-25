@@ -1,4 +1,4 @@
-#The Data
+# The Data
 
 This dataset consists of the records for three years of metadata describing articles from the journal _American Literature_, downloaded from _MLA International Bibliography_. For each year, I have a human-readable .txt file I copied from the HTML page produced by EBSCO's "Save" function, as well as CSV file listing each record. Because I am working only with the metadata, I used only the .txt files in this analysis, but the CSV file is useful for other kinds of analysis, as explained below.
 
