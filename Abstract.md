@@ -10,4 +10,4 @@ In this set of transformations for this data, I will:
 * Split these terms into separate datasets for analysis
 * Walk through some strategies and questions for each of the datasets
 
-[Introduction](introduction.md)
+[Introduction](Introduction.md)
