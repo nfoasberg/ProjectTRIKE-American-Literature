@@ -1,14 +1,14 @@
-Working with MLA Data -- Second Steps
+# Working with MLA Data -- Second Steps
 
-Previously on Project TRIKE: American Literature:
+## Previously on Project TRIKE: American Literature:
 
-After downloading three years worth of metadata for the journal American Literature, we extracted the subject terms from it using Python.  The dataset included several types of subject terms specifying the centuries, authors, works, and types of works, in addition to what we're calling "subject terms" proper -- the descriptions of the content of each of the articles. Each of these types of terms is now stored in its own CSV file, along with the year from which it was taken. 
+After downloading three years worth of metadata for the journal _American Literature_, we extracted the subject terms from it using Python.  The dataset included several types of subject terms specifying the centuries, authors, works, and types of works, in addition to what we're calling "subject terms" proper -- the descriptions of the content of each of the articles. Each of these types of terms is now stored in its own CSV file, along with the year from which it was taken. 
 
 Our next step is to organize this data into tables and charts, so that we can more easily find interesting patterns.
 
 From this point on, it's worthwhile to think about each of the pieces of our data separately; the things we can do with each are going to be different. 
 
-American Literature by Century
+## American Literature by Century
 
 Our collection of subject dates is the easiest to work with. In the records, each article has metadata indicating the century to which the literature it analyzes belongs -- the subject dates.  These are relatively easy to analyze because:
 
@@ -26,7 +26,7 @@ I used the visualization tools in my spreadsheet software to create some bar cha
 
 [insert one or more of the graphs from subject_date_visualizations.xml]
 
-American Literature by Type of Work
+## American Literature by Type of Work
 
 The "work classification" -- dividing works into fiction, poetry, etc is a little more complicated than the dates, but not as complicated as some of the other metadata we'll consider later. 
 
@@ -94,7 +94,7 @@ Or, when visualized, a little more like this:
 
 For all the potential flaws in this data, this gives us some clues about the priorities of the journal and the ways that indexing practices have changed. 
 
-American Literature by Authors
+## American Literature by Authors
 
 A reminder: in this section, I'm looking at the authors who are the subject of the articles in American Literature, not the authors who wrote the articles. 
 
@@ -124,7 +124,7 @@ I've added the nulls back into this dataset because they give a more accurate re
 
 subject_authors_race_gender_table.csv
 
-American Literature by Works
+## American Literature by Works
 
 When I began, I thought this would be an important category of metadata. However, we run into the same problems we do with many of the other categories: this is a list of sixty-nine items, with sixty-six different entries! For the curious, the works analyzed more than once are: Mark Twain's Roughing It (mentioned in 1950 and 1980), The Confidence Man (mentioned in 1950 and 1980), and The Grandissimes(mentioned in 1980 and 2010).
 
@@ -134,7 +134,7 @@ Thus, while I made a list of works, I've done no other analysis on this material
 
 subject_works_list_compiled.csv
 
-American Literature by Subject
+## American Literature by Subject
 
 With the subject headings, even more than the other data we've considerd, we're looking both at the publication practices of this journal and at the indexing practices of the Bibliography. Subject terms are assigned by the MLAIB's field bibliographers using a controlled vocabulary developed for exactly that purpose, so it's important to be aware that the changes visible in the data might reflect a change in the journal's scope, or they might reflect differences in indexing practices.
 
