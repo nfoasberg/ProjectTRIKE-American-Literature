@@ -1,172 +1,115 @@
-# Working with MLA Data -- Second Steps
+# Data Transformation Stage 2
 
-## Previously on Project TRIKE: American Literature:
+From this point on, I considered each of the pieces of our data separately, because they lent themselves to separate analyses. They are:
 
-After downloading three years worth of metadata for the journal _American Literature_, we extracted the subject terms from it using Python.  The dataset included several types of subject terms specifying the centuries, authors, works, and types of works, in addition to what we're calling "subject terms" proper -- the descriptions of the content of each of the articles. Each of these types of terms is now stored in its own CSV file, along with the year from which it was taken. 
+* [American Literature by Century](#century)
+* [American Literature by Type of Work](#worktype)
+* [American Literature by Authors](#authors)
+* [American Literature by Works](#works)
+* [American Literature by Subjects](#subjects)
 
-Our next step is to organize this data into tables and charts, so that we can more easily find interesting patterns.
+## <a name="century">American Literature by Century</a>
 
-From this point on, it's worthwhile to think about each of the pieces of our data separately; the things we can do with each are going to be different. 
-
-## American Literature by Century
-
-Our collection of subject dates is the easiest to work with. In the records, each article has metadata indicating the century to which the literature it analyzes belongs -- the subject dates.  These are relatively easy to analyze because:
+Our collection of subject dates is the easiest to work with. In the records, each article has metadata indicating the century to which the literature it analyzes belongs — the subject dates. These are relatively easy to analyze because:
 
 * They include a relatively small number of values
-* The dates are comparable to each other in an obvious, straightfoward fashion.
-* It's easy to know what questions we want to ask.
+* The dates are comparable to each other in an obvious, straightforward fashion.
+* It’s easy to know what questions we want to ask.
 
-I'm making the data available here as a CSV file, but it's probably easiest to use some sort of spreadsheet software to tabulate the data and create simple visualizations. I used Microsoft Excel for this purpose, but you could do the same with GoogleSheets or a free and open source spreadsheet alternative.  
+I’ve made the data available here as a CSV file, but it’s probably easiest to use some sort of spreadsheet software to tabulate the data and create simple visualizations. I used Microsoft Excel for this purpose, but you could do the same with GoogleSheets or a free and open source spreadsheet alternative.
 
-The software I used has a function allowing me to count the number of occurences for a specific string in a set of cels, so I organized the cels by publication year of the article (1950, 1980, or 2010) and made a table for each subject period and one for the data overall.  
+The software I used has a function allowing me to count the number of occurrences for a specific string in a set of cells, so I organized the cells by publication year of the article (1950, 1980, or 2010) and made a table for each subject period and one for the data overall.
 
-subject_date_tables.csv
+[Table of Centuries by Year of Data](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/subject_date_tables.csv)
 
-I used the visualization tools in my spreadsheet software to create some bar charts illustrating the coverage of literature by century. Now, the data is boiled down to a point where we can begin to make inferences about the focus of this journal! 
+## <a name="worktype">American Literature by Type of Work</a>
+This existence of a “genre” field which is apparently close in meaning to the “work classification” field complicates our consideration of the types of work covered in the journal. I considered carefully whether to combine these two fields. The values of the two fields are often similar, and in all cases but one, “genre” appears to replace “work classification.” However, the fact that the _Bibliography_ goes to the trouble of including both these fields suggests that a difference exists. This difference might be a hierarchical one — that is, it might exist at a different level of specificity in the vocabulary of the index. It was risky to combine fields when I didn’t fully understand why they are separate, but I wanted to get the most accurate understanding that I could of the subject matter of the journal. Ultimately, I did combine them. Thus, the “Type of Work” data didn’t perfectly mirror the records; it was an amalgamated category for these two fields.
 
-[insert one or more of the graphs from subject_date_visualizations.xml]
+Once again, I made a table of the different types of works appearing in the metadata, checking for duplicates as described above.
 
-## American Literature by Type of Work
+[Table of Work Types](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/work_classification_table.csv)
 
-The "work classification" -- dividing works into fiction, poetry, etc is a little more complicated than the dates, but not as complicated as some of the other metadata we'll consider later. 
+This seemed like  a lot of categories, making the data difficult to search for patterns. In fact, most of the categories include fewer than five items. Records without categories and items in three categories, “novel,” “poetry,” “prose,” and “short stories,” made up most of the list. One way of dealing with this kind of data was to look only at the items that dominate the list, so for instance, I could visualize just these three:
 
-This existence of a "genre" field which is apparently close in meaning to the "work classification" field complicates this. Should I combine these two fields or not?  The values of this field are often similar, and in all cases but one, "genre" appears to replace "work classification." However, there is certainly a difference behind the scenes -- otherwise, this wouldn't be two different fields. This difference might be a hierarchical one -- that is, it might exist at a different level of specificity in the vocabulary of the index. It's risky to combine fields when I don't fully understand why they are separate, but I also want to get the most accurate understanding that I can of the subject matter of the journal. Ultimately, I did combine them. Thus, the "Type of Work" data doesn't perfectly mirror the records; it's an amalgamated category. I'm already creating my own fields. 
+[Bar chart showing most prevalent work types cited in 1950, 1980 and 2010](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/xls/work_classification_visualization.xlsx)
+ 
 
-Once again, I made a table of the different types of works appearing in the metadata, checking for duplicates as descibed above: 
+But this didn’t seem right to me. Why were we giving so much attention to these different types of prose? What if the categories I discarded actually added up to something important? Did this analysis underestimate the amount of criticism published about prose by leaving out the autobiographies and other prose genres?
 
-work_classification_table.csv
+My answer to this problem was to sort each type of work into a larger category. The typical “genres” that literary criticism often uses as starting points are poetry, prose, and drama, so that seemed like a good place to start. For works that are formally subsets of one of these types, I grouped them into the larger group (that is, “novel” went under “prose”, “poetic cycle” under “poetry”). “Letters” and “criticism” were assumed to be prose.
 
-Type of Work	Cited in 1950	Cited in 1980	Cited in 2010	Total
-autobiography	0	0	2	2
-criticism	1	0	0	1
-drama	0	1	0	1
-fiction	0	0	2	2
-folk literature	0	1	0	1
-historical novel	0	0	1	1
-letters	0	1	0	1
-manuscript note	2	0	0	2
-no classification	17	2	1	20
-novel	6	14	6	26
-periodicals	2	0	0	2
-poetic cycle	0	0	1	1
-poetry	4	8	5	17
-popular poetry	0	0	1	1
-prose	9	5	6	20
-short story	1	6	2	9
-song	0	0	1	1
-source study	1	0	0	1
-translation	1	0	0	1
-war fiction	0	0	1	1
-Total	44	38	29	111
+Some of the types of works didn’t fit neatly into these categories, so I created an “other” category. For instance, “manuscript notes” aren’t exactly prose in the sense we’re using for the other works here — they’re just notes. There is a translation in the data, which could be prose, poetry, or drama. Folk literature and songs didn’t begin life in the form of the written word, and while it’s possible that the authors of the articles in which they’re analyzed focused on written texts, as poetry or prose, I couldn’t know that for sure without examining the articles themselves. While it’s generally preferable not to include miscellaneous data categories, this approach helped us to identify the biggest categories more easily.
 
-Looking at this table, a few problems become obvious. First, this is a much larger number of possible categories than the last dataset! Patterns are difficult to discern from this table; even  a bar chart like the one we made above wouldn't be particularly helpful.  Additionally, some of the distinctions made seem a little arbitrary -- for instance, why are some works classified as "novels" or "short stories," while others are classified simply as "prose"?
+[List of Coded Work Classification](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/work_classification_grouped.csv) 
 
-[insert "Types of Work by Year Cited" from work_classification_visualization.xls]
+### Duplicate Data Strikes Again!
+There was one more problem with this kind of grouping. When I initially compiled the dataset, I eliminated duplicate data from within the same record. However, by collapsing the categories into groups, it’s possible that I might have undone some of that work. For instance, if “prose” and “source study” both occurred in the same record, this method would result in counting it twice. In fact, there are a few cases in which that happened. This means I’m not counting the number of articles about a particular kind of work, but strictly counting the application of a particular label or type of label (an approach that could distort our analysis if any articles are extreme outliers in that respect). So, in the data below, we can say that labels describing prose works are very common; it’s a little harder to say that articles about prose works are as common.
 
-A quick glance shows us that most of these categories include fewer than five items.  Records without categories and items in three categories, "novel," "poetry," "prose," and "short stories," make up most of the list. One way of dealing with this kind of data is to look only at the items that dominate the list, so for instance, I could visualize just these three:
+### <a name="authors">American Literature by Authors</a>
+This is a much longer list than the ones we’ve worked with so far! To figure out exactly how much longer, I made a table that consolidated my list of authors by year cited. Sixty-two different subject authors were included in the metadata for these three years; only 12 were mentioned more than once. The only three mentioned more than three times were Walt Whitman (4 times), Nathaniel Hawthorne (4 times) and Herman Melville (12 times).
 
-[insert "Most Prevalent Work Types" graph from work_classification_visualization.xls]
+[List of Subject Authors by Year](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/subject_authors_by_year.csv)
 
-But this doesn't seem right to me. Why are we giving so much attention to these different types of prose? What if the categories I've discarded actually add up to something important? Are we underestimating the amount of criticism published about prose if we leave out the autobiographies and other prose genres?  
+This wasn’t very useful, because I didn’t have a large enough sample to draw conclusions about the extent to which American Literature features certain authors in their articles. Melville is clearly important, but many authors are analyzed in exactly one article, including very famous ones like Emily Dickinson and Robert Frost along with much more obscure authors like Bret Harte and primarily non-literary authors like Thomas Jefferson. If our data captured a broader look at the work published in American Literature, we would likely see much more work on Dickinson than on Harte. There are so many authors in play that it wasn’t especially surprising for any one author, even an important one, to be only cited once in a year, or not cited at all.
 
-My answer to this problem was to sort each type of work into a larger category. The typical "genres" that literary criticism often uses as starting points are poetry, prose, and drama, so that seemed like a good place to start. Some of the types of works didn't fit neatly into these categories, so I created an "other" category.  I allowed criticism to fall into the "prose" category, but "manuscript notes" aren't exactly prose -- they're just notes.  There is a translation in the data, which could be prose, poetry, or drama.  Folk literature and songs didn't begin life as a written word, and while it's possible that the authors of the articles in which they're analyzed focus on written texts, as poetry or prose, I can't know that for sure without examining the articles themselves. While it's generally preferable not to include miscellaneous data categories, this approach does help us to identify the biggest categories more easily. 
+Each year has a few records without a subject author. In some cases, these are bibliographies of other contemporary work or pressing issues in the field. Other articles analyze a group of works, without focusing on one author in particular. For instance, 2010 has one article on World War I narratives and another on the speculative fictions of slavery. This means, of course, that our list of authors whose work is analyzed in the journal is incomplete.
 
-There is one more problem with this kind of grouping. When I initially compiled the dataset, I eliminated duplicate data from within the same record. However, by collapsing the categories into groups, it's possible that I could undo some of that work. For instance, if "prose" and "source study" both occurred in the same record, I am now counting it twice. In fact, there are a few cases in which that happens. This means I'm not counting the number of articles about a particular kind of work, but strictly counting the application of a particular label or type of label. So, in the data below, we can say that labels describing prose works are very common; it's a little harder to say that articles about prose works are as common. 
+### Coding Authors
+The subject authors gave me an opportunity to partially answer one of my research questions: How did the canon of American literature change in the twentieth century? Are scholars writing about different authors now than they did previously? Is more attention being paid to women authors and authors of color?
 
-I could say more about this if I had managed to capture some data about which record each entry refers to within a year, but the scripts that I devised don't do that. 
+To answer that question, I needed to be able to identify authors by gender and race. This was problematic for several reasons!
 
-Still, at the very least, this data gives us some general idea of how important prose is, as opposed to poetry and drama -- and it points out a very clear pattern with regards to records that don't put the works analyzed into genre or classification categories. 
+First, it required me to slot people into reductive, simplistic categories, which may or may not match their own sense of their identity. I classified Willa Cather as a woman here; I wasn’t completely certain that this is how she identified, and since I’m not a Cather scholar, I’m aware that there are questions about this, but I’m ill-suited to make a strong argument for any particular gender. For the purposes of this analysis, I put her among the women because it seemed that most critics do. This is one problem with projects that cover multiple authors; it’s very likely to bring up authors with whom one isn’t familiar, so making distinctions like this can be difficult.
 
-work_classification_grouped.csv
+Race was also complex. Because I was working with a small dataset, I looked up each author in an attempt to find the most appropriate way to identify them. Note that the “Group” category I left out of the analysis might have been helpful here, since it often identifies authors in this way (for instance, as “African American woman poets”). However, it is also inconsistently applied. Both there and in other sources, authors are more likely to be “marked” as belonging to a group if the group varies from a perceived norm; thus, since American culture treats whiteness as an unmarked default, it is much easier to find out whether an author is of color than it is to confirm that an author is white, both in MLA and elsewhere.
 
-Type of Work	Cited 1950	Cited 1980	Cited 2010	Total
-Critical Prose Works	5	0	0	5
-Dramatic Works	0	1	0	1
-Literary Prose Works	16	27	20	63
-Periodicals	2	0	0	2
-Works of Poetry	4	8	8	20
-No Classification	19	3	7	29
-Total	46	39	35	120
+I tried not to make too many assumptions, but it’s entirely possible that I was incorrect in some places. Two of the authors in this sample were also biracial; in this case, they were Native and white, and I counted them as Native because I wanted to analyze to what extent the journal was publishing criticism on Native American authors.
 
-Or, when visualized, a little more like this:
+In addition to the problems of who might fit in which categories for the purpose of this analysis, it was also problematic to use these categories in an apparently straightforward, unquestioning way. Gender and race are complex, ever-shifting social constructs which play a large role in how people (and, by extension, the works of art they produce) are received. This means it’s important to pay attention to them, but when we don’t acknowledge the history and complexity of these categories, we run the risk of reinforcing them and treating them as “natural.” Digital humanities scholars are thinking carefully about this complicated problem.
 
-[insert chart from work_classification_grouped_visualization.xls]
+However, I did need to include information on both gender and race in order to identify underrepresentation. My imperfect, provisional result was this:
 
-For all the potential flaws in this data, this gives us some clues about the priorities of the journal and the ways that indexing practices have changed. 
+[Coded Subject Authors](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/subject_authors_coded.csv)
 
-## American Literature by Authors
+This analysis did not take into account that some authors are the subject of multiple articles, nor the fact that some articles are about multiple authors! Thus, it did not evaluate (for instance) the number of women whose work was analyzed, nor the number of articles about works by women — only the number of times a woman was named as a subject author. Collapsing the works about the same author would produce different results.
 
-A reminder: in this section, I'm looking at the authors who are the subject of the articles in American Literature, not the authors who wrote the articles. 
-
-This is a much longer list than the ones we've worked with so far! To figure out exactly how much, I made a table that consolidated my list of authors by year cited. Sixty-two different subject authors were included in the metadata for these three years; only 12 were mentioned more than once.  The only three mentioned more than three times were Walt Whitman (4 times), Nathaniel Hawthorne (4 times) and Herman Melville (12 times). 
-
-subject_authors_by_year.csv
-
-This isn't very useful, because we don't have a large enough sample to draw conclusions about the extent to which American Literature features certain authors in their articles. Melville is clearly important, but the much larger group of authors analyzed in at least one article includes authors like Emily Dickinson and Robert Frost along with much more obscure authors like Bret Harte and primarily non-literary authors like Thomas Jefferson. With a broader look at the work published in American Literature, we would likely see much more work on Dickinson than on Harte. There are so many authors in play that it isn't especially surprising for any one author, even an important one, to be only cited once in a year, or not cited at all.
-
-Each year has a few records without a subject author. In some cases, these are bibliographies of other contemporary work or pressing issues in the field. Otherwise, they analyze a group of works, without focusing on one author in particular. For instance, 2010 has an article on World War I narratives and another on the speculative fictions of slavery. This means, of course, that our list of authors whose work is analyzed in the journal is incomplete. 
-
-However, the subject authors gave me an opportunity to partially answer one of my research questions: How had the canon of American literature changed in the twentieth century? Are scholars writing about different authors now than they did previously? Is more attention being paid to women authors and authors of color? 
-
-To answer that question, I needed to be able to identify authors by gender and race. This is problematic for several reasons! 
-
-First, it requires me to slot people into reductive, simplistic categories, which may or may not match their own sense of their identity.  I've classified Willa Cather as a woman here; I'm not completely certain that this is how she identified, and since I'm not a Cather scholar, I'm aware that there are questions about this, but I'm ill-suited to make a strong argument for any particular gender. For the purposes of this analysis, I put her among the women because it seems that most critics do. This is one problem with projects that cover multiple authors; it's very likely to come across researchers with whom one isn't familiar.  Race is also complex. Because I'm working with a small dataset, I looked up each author in an attempt to find the most appropriate way to identify them. Note that the "Group" category I left out of the analysis might have been helpful here, since it often identified authors in this way (for instance, as "African American woman poets").  However, it was also inconsistently applied. As I've explained in an earlier stage, atuhors are more likely to be "marked" as belonging to a group if the group varies from a percieved norm; thus, since American culture makes whiteness an unmarked default, it is much easier to find out whether an author is of color than it is to confirm that an author is white, both in MLA and elsewhere. I tried not to make too many assumptions, but it's entirely possible that I'm incorrect in some places. Two of the authors in this sample were also biracial; in this case, they were Native and white, and I counted them as Native because I wanted to see to what extent the journal was publishing criticism on Native American authors. 
-
-In addition to the problems of who might fit in which categories for the purpose of this analysis, there are also some problems with using these categories in an apparently straightforward, unquestioning way. Miriam Posner argues convincingly that identity is more complex than crude data models such as those used in the US Census, and that the Census's simplifications don't give us the most accurate picture of the United States. When we don't acknowledge complexity, we run the risk of reinforcing these simplified and "official" categories. *
-
-However, I do need to include information on both gender and race in order to identify underreprensentation.  It's worth thinking about better and more nuanced ways I could have accomplished this. For the time being, I came up with this:
-
-subject_authors_coded.csv
-
-From here, I made some tables breaking down the numbers of articles about works by the gender and race of the author.  This analysis does not take into account that some authors are the subject of multiple articles!  Thus, it does not evaluate (for instance) the number of women whose work was analyzed -- only the number of articles about literature by women.  Collapsing the works about the same author would produce different (though likely also interesting) results.
-
-I've added the nulls back into this dataset because they give a more accurate representation of how much of the journal's output for that year each bar represents. 
-
-subject_authors_race_gender_table.csv
+Again, the risk of this approach is that if our data included an article with a much larger number of subject authors than the others, it would dominate our analysis.
 
 ## American Literature by Works
+When I began, I thought this would be an important category of metadata. However, we run into the same problems we do with many of the other categories: this is a list of sixty-nine items, with sixty-six different entries! For the curious, the works mentioned more than once were: _Roughing It_ (mentioned in 1950 and 1980), _The Confidence Man_ (mentioned in 1950 and 1980), and _The Grandissimes_ (mentioned in 1980 and 2010).
 
-When I began, I thought this would be an important category of metadata. However, we run into the same problems we do with many of the other categories: this is a list of sixty-nine items, with sixty-six different entries! For the curious, the works analyzed more than once are: Mark Twain's Roughing It (mentioned in 1950 and 1980), The Confidence Man (mentioned in 1950 and 1980), and The Grandissimes(mentioned in 1980 and 2010).
+If we had chosen to break the works into groups, we might have gotten interesting results — but much of this work was already done in the rest of the metadata! We already had data about types of work, centuries published, and the authors.
 
-If we were to break the works into groups, we might get interesting results -- but much of this work is already done in the rest of the metadata! We already have data about types of work, centuries published, and the authors. 
+Thus, while I made a list of works, I did no other analysis on this material, except to note that there are many more nulls in 1950 than in the other years.
 
-Thus, while I made a list of works, I've done no other analysis on this material, except to note that there are many more nulls in 1950 than in the other years. 
+[List of Subject Works](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/subject_works_compiled.csv)
 
-subject_works_list_compiled.csv
+## <name="subject">American Literature by Subject</a>
+The subject terms, even more than the other data I considered, revealed information about both the publication practices of this journal and at the indexing practices of the Bibliography. Subject terms are assigned by the MLAIB‘s field bibliographers using a controlled vocabulary developed for exactly that purpose, so it was important to be aware that the changes we notice in the data could reflect a change in the journal’s scope, or possibly differences in indexing practices.
 
-## American Literature by Subject
 
-With the subject headings, even more than the other data we've considerd, we're looking both at the publication practices of this journal and at the indexing practices of the Bibliography. Subject terms are assigned by the MLAIB's field bibliographers using a controlled vocabulary developed for exactly that purpose, so it's important to be aware that the changes visible in the data might reflect a change in the journal's scope, or they might reflect differences in indexing practices.
+[LIst of Subject Terms by Year](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/subject_terms_compiled.csv)
 
-subject_terms_list_compiled.csv
+One obvious difference is the number of terms assigned each year; this will be considered further in the Analysis section.
 
-The first thing we can do with this list is calculate the number of terms assigned in each year.  In 1950, a total of 44 subject terms were assigned to articles in _American Literature_. In 1980, that number rose to 95, and in 2010, 112. However, fewer articles were published in 2010 than in those other years!  Pulling from the data provided above, I as able to calculate the average number of terms per article:
+As I noted in the other sections, the weakness of analyzing the terms term by term rather than record by record is that records with a high number of terms are better represented in our data.
 
-	1950	1980	2010
-Number of Subject Terms	44	95	112
-Number of Articles Published	37	35	24
-Subject Terms per Article	1.189189189	2.714285714	4.666666667
+However, aside from the sheer number of terms, this list of subject terms didn’t offer any obvious, immediate path to analytical conclusions — much like many of the other datasets we looked at here. I made a decision to code the subject terms, breaking them into groups for analysis. Under ideal circumstances, I could cross-check these with another person, but the time constraints of the current project prevented that approach.
 
-This is worth  keeping in mind during our analysis!  Since articles published in 2010 have nearly four times as many subject terms on average as those published in 1950, it won't necessarily be meaningful to show that a particular term or set of terms were used more often in 2010.  In 1950, 17 articles were added to the bibliography without any subject terms; in 1980, only two were, and in 2010, every article had subject terms. While it's possible that later articles covered more ground, it's much more likely that this indicates a change in indexing procedures. 
+Note that this is very different from the kinds of coding I did on previous iterations of this data, because here, I made up my own categories. Thus, my analysis depended very heavily on what kinds of categories I assigned and how I understood those categories. Note that it isn’t always necessary to make up your own terms. Often, vocabularies have already been developed and documented by other researchers; other times, it may be possible to access the categories into which the terms were originally placed by the organization that developed the vocabulary.*
 
-However, aside from the sheer number of terms, this list of subject terms doesn't offer any obvious, immediate path to analytical conclusions -- much like many of the other datasets we've looked at here. I made a decision to code the subject terms, breaking them into groups for analysis. Under ideal circumstances, I could cross-check these with another person, but the time constraints of the current project prevented that approach.
+Nobody should trust my analysis without taking a good look at the categories I developed! This is where a data dictionary comes in handy. It helps the future users of my data to understand the decisions I made, and, as an added benefit, writing it helped me to develop my thinking further, and eliminate the categories I couldn’t explain well.
 
-Note that this is very different from the kinds of coding we've done on previous iterations of this data, because here, I am making up my own categories. Thus, my analysis will depend very heavily on what kinds of categories I assign and how I understand those categories.  Note that it isn't always necessary to make up your own terms. Often, vocabularies have already been developed and documented by other researchers; other times, it may be possible to access the categories into which the terms were originally understood.*
+[Data Dictionary [4 KB]](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/txt/subject_terms_data_dictionary.txt)
 
-Nobody should trust my analysis without taking a good look at the categories I developed!  This is where a data dictionary comes in handy. It helps the future users of my data to understand the decisions I made, and, as an added benefit, writing it helped me to develop my thinking further, and eliminate the categories I couldn't explain well. 
+[Table classifying subject terms by topic](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/csv/subject_terms_coded.csv)
 
-subject_terms_data_dictionary.txt
-subject_terms_coded.csv
+Of course, these categories were deeply rooted in my own point of view; there is no reason to think someone else looking at this data would come up with the same analysis. However, it’s worth noticing that some of them, like those I’ve labeled “philosophical concepts” or “rhetorical techniques” were about the aspects of the work being analyzed, while others were about the author, or relationships among works, or even the article itself.
 
-Of course, these categories are deeply rooted in my own point of view; there is no reason to think someone else looking at this data would come up with the same analysis. However, it's worth noticing that some of them, like those I've labeled "philosophical concepts" or "rhetorical techniques" are about the aspects of the work being analyzed, while others are about the author, or relationships among works, or even the article itself. 
+I also removed any subject terms that reiterated the title of a work listed in subject works or the name of the author listed in subject authors, except where the term referred to influence on an author.
 
-I also removed any subject terms that reiterated the title of a work listed in subject works or the name of the author listed in subject authors, except where the term referred to influence on an author.  
+*Subject terms, in many cases, are part of a hierarchical vocabulary with their own implied context. However, these are not always visible or legible to the end user, in this case me.
 
-Visualizing any set of data with this many categories is likely to be difficult. In this case, a year-by-year graph can give us some indication of where it would be most useful to look, because it allows us a quick glance into how the number of headings of each type has changed relative to the others of its year. 
+[Continue to next page...](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/Analysis.md)
 
-[chart from subject_terms_analysis.xml]
-
-*Subject terms, in many cases, are part of a hierarchical vocabulary with their own implied context. However, these are not always visible or legible to the enduser, in this case me.
-
-[Analysis](Analysis.md)
-[Back](Transform_Stage_1.md)
+[Back to the table of contents...](https://github.com/nfoasberg/ProjectTRIKE-American-Literature/blob/master/table_of_contents.md)
